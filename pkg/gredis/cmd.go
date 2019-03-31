@@ -37,7 +37,7 @@ func Exists(keys ...string) *redis.IntCmd {
 	if RedisSetting.Cluster {
 		return redisClusterClient.Exists(keys...)
 	} else {
-		return client.Del(keys...)
+		return client.Exists(keys...)
 	}
 }
 
