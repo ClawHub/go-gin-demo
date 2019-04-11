@@ -2,6 +2,7 @@ package logging
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-gin-demo/pkg/setting"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"
@@ -22,6 +23,7 @@ var HTTPLogger *zap.Logger
 
 //定制日志
 func Setup() {
+	setting.MapTo("log", LogSetting)
 	//记录Gin日志
 	f, _ := os.Create(LogSetting.Gin)
 	// Use the following code if you need to write the logs to file and console at the same time.
