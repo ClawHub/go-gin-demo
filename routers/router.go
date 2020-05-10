@@ -2,6 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-gin-demo/middleware/cors"
 	"go-gin-demo/middleware/jwt"
 	"go-gin-demo/pkg/export"
 	"go-gin-demo/pkg/setting"
@@ -21,6 +22,8 @@ func InitRouter() *gin.Engine {
 
 	//Recovery返回一个中间件，该中间件从任何恐慌中恢复，如果有500，则写入500。
 	r.Use(gin.Recovery())
+	// 使用跨域中间件
+	r.Use(cors.Cors())
 	//设置mode-----"debug","release","test"
 	gin.SetMode(setting.ServerSetting.RunMode)
 

@@ -29,6 +29,8 @@ func init() {
 	gredis.Setup()
 	//定时任务启动
 	cron.Setup()
+	//mongo配置
+	gmongo.Setup()
 }
 
 //系统启动项
