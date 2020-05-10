@@ -2,8 +2,8 @@ package gmongo
 
 import (
 	"context"
-	"diffuser/pkg/logging"
-	"diffuser/pkg/setting"
+	"go-gin-demo/pkg/logging"
+	"go-gin-demo/pkg/setting"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"

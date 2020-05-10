@@ -26,19 +26,20 @@ func InitRouter() *gin.Engine {
 	r.Use(cors.Cors())
 	//设置mode-----"debug","release","test"
 	gin.SetMode(setting.ServerSetting.RunMode)
-
+	//工程名
+	project := r.Group(setting.ServerSetting.ProjectName)
 	//静态文件服务
-	r.StaticFS("/export", http.Dir(export.GetExcelFullPath()))
-	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
+	project.StaticFS("/export", http.Dir(export.GetExcelFullPath()))
+	project.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 
 	//健康检查
-	r.GET("/welcome", api.Welcome)
+	project.GET("/welcome", api.Welcome)
 	//鉴权
-	r.GET("/auth", api.GetAuth)
+	project.GET("/auth", api.GetAuth)
 	//上传图片
-	r.POST("/upload", api.UploadImage)
+	project.POST("/upload", api.UploadImage)
 	//路由组
-	apiv1 := r.Group("/api/v1")
+	apiv1 := project.Group("/api/v1")
 
 	//使用JSON Web Tokens 中间件
 	apiv1.Use(jwt.JWT())
