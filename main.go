@@ -4,8 +4,10 @@ import (
 	"context"
 	"fmt"
 	"go-gin-demo/cron"
+	gcache "go-gin-demo/pkg/cache"
 	"go-gin-demo/pkg/gmongo"
 	"go-gin-demo/pkg/gmysql"
+	"go-gin-demo/pkg/gqueue"
 	"go-gin-demo/pkg/gredis"
 	"go-gin-demo/pkg/logging"
 	"go-gin-demo/pkg/setting"
@@ -32,6 +34,10 @@ func init() {
 	cron.Setup()
 	//mongo配置
 	gmongo.Setup()
+	//缓存
+	gcache.Setup()
+	//持久化队列
+	gqueue.Setup()
 }
 
 //系统启动项
